@@ -19,7 +19,7 @@ const UserProfileDesktop = () => {
       {}
       <div className="flex items-center justify-center gap-2">
         <p>
-          خوش آمدید ، لطفا برای استفاده از برنامه وارد حساب کاربری خودتون بشین
+          خوش آمدید ، لطفا برای استفاده از قابلیت های  برنامه وارد حساب کاربری خودتون بشین
         </p>
         <Link
           href={"/login"}
