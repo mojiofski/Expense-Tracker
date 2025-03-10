@@ -5,7 +5,7 @@ import React from "react";
 
 const Home = () => {
   return (
-    <div className="px-4 py-2">
+    <div className="px-2 py-2">
       <Navbar />
       <MobileMenu />
       <SlideMenu />

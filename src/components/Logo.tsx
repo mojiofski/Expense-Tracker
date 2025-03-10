@@ -11,7 +11,7 @@ const Logo = () => {
       onClick={() => {
         router.push("/");
       }}
-      className="flex justify-center items-center cursor-pointer "
+      className="flex justify-end items-center cursor-pointer w-1/2 "
     >
       <span className="text-2xl font-semibold text-purple-600 mt-2 cursor-pointer">
         Jibja
