@@ -6,10 +6,10 @@ import { IoSettingsOutline } from "react-icons/io5";
 
 const MobileMenu = () => {
   return (
-    <div className="flex py-2 px-8 z-50 fixed bottom-0 right-0 left-0 lg:hidden">
+    <div className="flex py-2 px-6 z-50 fixed bottom-0 right-0 left-0 lg:hidden">
       <div className=" flex flex-col items-center w-full bg-white rounded-lg ">
         <div className="p-2 bg-purple-500 absolute -top-4 rounded-full">
-          <div className="bg-gray-600 text-white w-12 h-12 text-2xl font-semibold rounded-full flex items-center justify-center  ">
+          <div className="bg-gray-600 text-white w-14 h-14 text-2xl font-semibold rounded-full flex items-center justify-center  ">
             +
           </div>
         </div>
