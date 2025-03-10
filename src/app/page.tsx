@@ -1,5 +1,4 @@
 import Hero from "@/components/Hero";
-import IsUserExist from "@/components/IsUserExist";
 import Navbar from "@/components/Navbar";
 
 import React from "react";
