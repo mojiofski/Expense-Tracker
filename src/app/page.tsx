@@ -1,17 +1,16 @@
+import Hero from "@/components/Hero";
 import IsUserExist from "@/components/IsUserExist";
-import MobileMenu from "@/components/MobileMenu";
 import Navbar from "@/components/Navbar";
-import SlideMenu from "@/components/SlideMenu";
+
 import React from "react";
 
 const Home = () => {
   return (
-    <div className="px-2 py-2">
+    <div className="flex flex-col ">
       <Navbar />
-      <IsUserExist />
+    
 
-      <MobileMenu />
-      <SlideMenu />
+      <Hero />
     </div>
   );
 };

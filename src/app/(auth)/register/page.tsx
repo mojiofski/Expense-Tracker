@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Logo from "@/components/Logo";
 import Link from "next/link";
-const Login = () => {
+const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   return (
@@ -33,19 +33,14 @@ const Login = () => {
             className="border rounded-md text-sm px-2 py-2 "
           />
           <button className="bg-blue-500 text-white rounded-md py-2 ">
-            ورود
+            ثبت نام
           </button>
         </form>
-        <p className="text-gray-600 text-sm text-center mt-4">
-          رمز عبور خود را فراموش کرده اید؟!{" "}
-          <Link href={"/forget-password"} className="font-semibold ">
-            بازیابی رمز عبور
-          </Link>{" "}
-        </p>
+
         <p className="text-sm text-gray-600 text-center mt-8 ">
-          اگر ثبت نام نکرده اید ،{" "}
-          <Link href={"/register"} className="font-semibold">
-            همین حالا ثبت نام کنید
+          اگر قبلا ثبت نام کرده اید،{" "}
+          <Link href={"/login"} className="font-semibold">
+            همین حالا وارد شوید
           </Link>
         </p>
       </div>
@@ -76,25 +71,19 @@ const Login = () => {
                 className="border rounded-md text-sm px-2 py-2 "
               />
               <button className="bg-blue-500 text-white rounded-md py-2 ">
-                ورود
+                ثبت نام
               </button>
             </form>
-            <p className="text-gray-600 text-sm text-center mt-4">
-              رمز عبور خود را فراموش کرده اید؟!{" "}
-              <Link href={"/forget-password"} className="font-semibold ">
-                بازیابی رمز عبور
-              </Link>{" "}
-            </p>
             <p className="text-sm text-gray-600 text-center mt-8 ">
-              اگر ثبت نام نکرده اید ،{" "}
-              <Link href={"/register"} className="font-semibold">
-                همین حالا ثبت نام کنید
+              اگر قبلا ثبت نام کرده اید،{" "}
+              <Link href={"/login"} className="font-semibold">
+                همین حالا وارد شوید
               </Link>
             </p>
           </div>
         </div>
         {/* Image */}
-        <div className="flex w-1/2 ">
+        <div className="flex w-1/2  ">
           <div className="relative w-full h-[550px] rounded-l-md  overflow-hidden">
             <Image
               src={"/images/accounting3.jpg"}
@@ -111,4 +100,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

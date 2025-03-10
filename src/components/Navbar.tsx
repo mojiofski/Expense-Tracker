@@ -7,7 +7,7 @@ const Navbar = () => {
   return (
     <div className="flex ">
       {/* Mobile Navbar */}
-      <div className="flex w-full items-center justify-between bg-white rounded-md shadow-md px-2 lg:hidden">
+      <div className="flex w-full items-center justify-between bg-white  shadow-md px-2 lg:hidden">
         {/* Searchbar */}
         <div className="flex w-1/2">
           <MobileSearchbar />
@@ -17,7 +17,7 @@ const Navbar = () => {
       </div>
 
       {/* Desktop Navbar */}
-      <div className="hidden lg:flex items-center justify-between w-full bg-white px-4  rounded shadow-lg">
+      <div className="hidden lg:flex items-center justify-between w-full bg-white px-4 shadow-lg">
         {/* profile */}
         <div>
           <UserProfileDesktop />
