@@ -7,16 +7,21 @@ import { useRouter } from "next/navigation";
 const Logo = () => {
   const router = useRouter();
   return (
-    <div
-      onClick={() => {
-        router.push("/");
-      }}
-      className="flex justify-end items-center cursor-pointer w-1/2 "
-    >
-      <span className="text-2xl font-semibold text-purple-600 mt-2 cursor-pointer">
+    <div className="flex justify-end items-center w-1/2">
+      <span
+        onClick={() => {
+          router.push("/");
+        }}
+        className="text-2xl font-semibold text-purple-600 mt-2 cursor-pointer"
+      >
         Jibja
       </span>
-      <div className="relative w-15 h-15 bg-white">
+      <div
+        onClick={() => {
+          router.push("/");
+        }}
+        className="relative w-15 h-15 bg-white cursor-pointer"
+      >
         <Image
           src={"/images/Accounting-logo-design-price.jpg"}
           alt=""

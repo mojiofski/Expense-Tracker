@@ -18,19 +18,22 @@ const Login = () => {
           <Logo />
         </div>
         <form className="flex flex-col w-full gap-2">
+          <p className="mb-2 text-center">
+            ورود به <span className="text-purple-500">جیب جا</span>
+          </p>
           <input
             type="text"
             value={email}
             placeholder="ایمیل"
             onChange={(e) => setEmail(e.target.value)}
-            className="border rounded-md text-sm px-2 py-2 "
+            className="border border-gray-600 rounded-md text-sm px-2 py-2 focus:outline-none focus:border focus:border-blue-400"
           />
           <input
             type="email"
             value={password}
             placeholder="رمز عبور"
             onChange={(e) => setPassword(e.target.value)}
-            className="border rounded-md text-sm px-2 py-2 "
+            className="border border-gray-600 rounded-md text-sm px-2 py-2 focus:outline-none focus:border focus:border-blue-400"
           />
           <button className="bg-blue-500 text-white rounded-md py-2 ">
             ورود
@@ -51,29 +54,32 @@ const Login = () => {
       </div>
       {/* Desktop Login */}
       <div className="hidden lg:flex bg-white w-[1000px] rounded-md ">
-        {/* form */}
-        <div className="flex flex-col items-center justify-around w-1/2 px-8">
-          <div className="flex w-full text-md font-semibold">
+        {/* Right Section */}
+        <div className="flex flex-col items-center w-1/2 px-8 py-4">
+          {/* nav */}
+          <div className="flex items-center justify-between w-full text-md font-semibold border-b-2 border-gray-300">
             <Link href={"/"}>بازگشت به صفحه اصلی</Link>
-          </div>
-          <div className="flex w-full items-center justify-end  border-b-2 border-b-gray-300">
             <Logo />
           </div>
-          <div className="flex flex-col w-full max-w-xs mx-auto rounded-lg p-4 ">
+          {/* Form */}
+          <div className="flex flex-col w-full max-w-xs mx-auto rounded-lg p-4 mt-30 ">
+            <p className="mb-2 text-center">
+              ورود به <span className="text-purple-500">جیب جا</span>
+            </p>
             <form className="flex flex-col w-full gap-2">
               <input
                 type="text"
                 value={email}
                 placeholder="ایمیل"
                 onChange={(e) => setEmail(e.target.value)}
-                className="border rounded-md text-sm px-2 py-2 "
+                className="border border-gray-600 rounded-md text-sm px-2 py-2 focus:outline-none focus:border focus:border-blue-400"
               />
               <input
                 type="email"
                 value={password}
                 placeholder="رمز عبور"
                 onChange={(e) => setPassword(e.target.value)}
-                className="border rounded-md text-sm px-2 py-2 "
+                className="border border-gray-600 rounded-md text-sm px-2 py-2 focus:outline-none focus:border focus:border-blue-400"
               />
               <button className="bg-blue-500 text-white rounded-md py-2 ">
                 ورود
@@ -93,8 +99,9 @@ const Login = () => {
             </p>
           </div>
         </div>
-        {/* Image */}
+        {/* Left Section */}
         <div className="flex w-1/2 ">
+          {/* Image */}
           <div className="relative w-full h-[550px] rounded-l-md  overflow-hidden">
             <Image
               src={"/images/accounting3.jpg"}

@@ -1,19 +1,27 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { BsPerson } from "react-icons/bs";
 import { GoGoal } from "react-icons/go";
-import { FaRegLightbulb } from "react-icons/fa";
 import { IoSettingsOutline } from "react-icons/io5";
-
+import { BsBarChartLine } from "react-icons/bs";
+import AddExpense from "./AddExpense";
 const MobileMenu = () => {
+  const [addExpenseModal, setAddExpenseModal] = useState(false);
+
   return (
     <>
-    {}
-      <div className="flex py-2 px-2 z-50 fixed bottom-0 right-0 left-0 lg:hidden">
+      {}
+      <div className="flex py-2 px-2 fixed bottom-0 right-0 left-0  lg:hidden">
         <div className=" flex flex-col items-center w-full bg-white rounded-lg ">
-          <div className="p-2 bg-purple-500 absolute -top-7 rounded-full">
-            <div className="bg-gray-600 text-white w-14 h-14 text-2xl font-semibold rounded-full flex items-center justify-center  ">
+          <div className="p-2 absolute top-1 rounded-full ">
+            <button
+              aria-label="افزودن هزینه"
+              onClick={() => setAddExpenseModal((prev) => !prev)}
+              className="bg-purple-600 border-2 border-gray-600 text-white w-14 h-14 text-2xl font-semibold rounded-full flex items-center justify-center cursor-pointer "
+            >
               +
-            </div>
+            </button>
           </div>
 
           <div className="flex w-full items-center justify-between p-2">
@@ -33,10 +41,10 @@ const MobileMenu = () => {
             </div>
             <div className="flex items-center justify-around w-1/2  ">
               <div className="flex flex-col items-center justify-center text-gray-700 pr-8">
-                <span className="text-3xl">
-                  <FaRegLightbulb />
+                <span className="text-3xl ">
+                  <BsBarChartLine />
                 </span>
-                <p className="text-sm">آموزش</p>
+                <p className="text-sm">نمودار</p>
               </div>
               <div className="flex flex-col items-center justify-center text-gray-700">
                 <span className="text-3xl">
@@ -48,6 +56,10 @@ const MobileMenu = () => {
           </div>
         </div>
       </div>
+      <AddExpense
+        addExpenseModal={addExpenseModal}
+        setAddExpenseModal={setAddExpenseModal}
+      />
     </>
   );
 };

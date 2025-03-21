@@ -10,14 +10,27 @@
   },
   "dependencies": {
     "@fontsource/vazirmatn": "^5.2.5",
+    "@reduxjs/toolkit": "^2.6.1",
+    "dotenv": "^16.4.7",
+    "harfizer": "^1.0.4",
+    "moment-jalaali": "^0.10.4",
+    "mongodb": "^6.14.2",
+    "mongoose": "^8.12.1",
     "next": "15.2.1",
+    "num2persian": "^3.2.2",
+    "persian-tools": "^1.0.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-icons": "^5.5.0"
+    "react-icons": "^5.5.0",
+    "react-multi-date-picker": "^4.5.2",
+    "react-redux": "^9.2.0",
+    "uuid": "^11.1.0",
+    "wordifyfa": "^1.4.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/moment-jalaali": "^0.7.9",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

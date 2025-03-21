@@ -7,7 +7,7 @@ const MobileSearchbar = () => {
   return (
     <>
       {}
-      <div className="flex w-full">
+      <div className="flex w-1/2 lg:w-[400px]">
         <div className="flex w-full">
           <form className="relative flex w-full overflow-hidden">
             <input
