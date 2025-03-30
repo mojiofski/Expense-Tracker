@@ -1,14 +1,16 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import connectDB from "../../../../../lib/mongodb";
 import Expense from "../../../../../models/expense";
+import { NextRequest } from "next/server";
 
-interface IContext {
+interface Context {
   params: { id: string };
 }
-export async function DELETE(req: NextRequest, context: IContext) {
+
+export async function DELETE(req: NextRequest, context: Context) {
   await connectDB();
 
-  const { id } = context.params;
+  const { id } = context.params; // استخراج ID به‌صورت درست
 
   try {
     const deletedExpense = await Expense.findByIdAndDelete(id);
