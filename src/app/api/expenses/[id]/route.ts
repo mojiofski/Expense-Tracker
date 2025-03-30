@@ -1,14 +1,14 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import connectDB from "../../../../../lib/mongodb";
 import Expense from "../../../../../models/expense";
 
-export async function DELETE(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+interface IContext {
+  params: { id: string };
+}
+export async function DELETE(req: NextRequest, context: IContext) {
   await connectDB();
 
-  const { id } = params;
+  const { id } = context.params;
 
   try {
     const deletedExpense = await Expense.findByIdAndDelete(id);
