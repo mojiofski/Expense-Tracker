@@ -4,13 +4,13 @@ import Expense from "../../../../../models/expense";
 import { NextRequest } from "next/server";
 
 interface Context {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
-
 export async function DELETE(req: NextRequest, context: Context) {
   await connectDB();
-
-  const { id } = context.params; // استخراج ID به‌صورت درست
+  
+  const resolvedParams = await context.params;
+  const { id } = resolvedParams; // استخراج ID به‌صورت درست
 
   try {
     const deletedExpense = await Expense.findByIdAndDelete(id);
