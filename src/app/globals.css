@@ -2,8 +2,7 @@
 
 body {
   direction: rtl;
-  font-family: 'Vazirmatn',
-    sans-serif;
+  font-family: "Vazirmatn", sans-serif;
   background-color: oklch(0.627 0.265 303.9);
 }
 

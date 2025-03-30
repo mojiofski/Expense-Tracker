@@ -6,7 +6,7 @@ import { IExpense } from "@/store/expenseSlice";
 
 const DashboardScreen = () => {
   const [expenses, setExpenses] = useState<IExpense[]>([]);
-
+  const [refresh, setRefresh] = useState(false);
   useEffect(() => {
     const fetchExpenses = async () => {
       const response = await fetch("/api/expenses");
@@ -15,10 +15,10 @@ const DashboardScreen = () => {
       }
       const result = await response.json();
       setExpenses(result);
-      console.log("salam inja", expenses);
+      setRefresh((prev) => !prev);
     };
     fetchExpenses();
-  }, []);
+  }, [refresh]);
 
   const income = expenses
     .filter((exp) => exp.expenseType === "ورودی")

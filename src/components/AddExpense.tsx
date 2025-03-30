@@ -5,6 +5,9 @@ import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import moment from "moment-jalaali";
+import useSWR, { mutate } from "swr";
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 interface IAddExpenseModal {
   addExpenseModal: boolean;
@@ -21,6 +24,7 @@ const AddExpense = ({
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [expenseType, setExpenseType] = useState("خروجی");
+  const { error } = useSWR("/api/expenses", fetcher);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,7 +32,6 @@ const AddExpense = ({
     setErrorMessage("");
 
     const expenseData = { title, amount: Number(amount), date, expenseType };
-    console.log("inja", expenseData);
     try {
       if (
         !title.trim() ||
@@ -38,9 +41,9 @@ const AddExpense = ({
       ) {
         setErrorMessage("لطفا اطلاعات را به صورت صحیح وارد کنید");
         setLoading(false);
-
         return;
       }
+
       const response = await fetch("/api/expenses", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -54,6 +57,9 @@ const AddExpense = ({
       const result = await response.json();
       console.log("✅ داده با موفقیت ذخیره شد:", result);
 
+      // بروزرسانی لیست هزینه‌ها به کمک mutate
+      mutate("/api/expenses"); // لیست هزینه‌ها به‌روز می‌شود
+
       setTitle("");
       setAmount("");
       setErrorMessage("");
@@ -66,6 +72,10 @@ const AddExpense = ({
       setLoading(false);
     }
   };
+
+  if (error) {
+    return <p className="text-red-500">خطا در بارگذاری داده‌ها</p>;
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
