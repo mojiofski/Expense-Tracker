@@ -8,19 +8,26 @@ if (!MONGO_URI) {
 
 const connectDB = async () => {
   try {
+    // بررسی اتصال قبلی
     if (mongoose.connection.readyState >= 1) {
       console.log("✅ Already connected to MongoDB");
       return;
     }
 
+    // اتصال به MongoDB
     await mongoose.connect(MONGO_URI, {
       dbName: "Expense-Tracker", // نام دیتابیس شما
     });
 
     console.log("✅ Connected to MongoDB");
+
+    // مدیریت خطا در صورت بروز
+    mongoose.connection.on("error", (error) => {
+      console.error("❌ MongoDB connection error:", error);
+    });
   } catch (error) {
     console.error("❌ MongoDB connection error:", error);
-    process.exit(1);
+    process.exit(1); // برنامه را متوقف می‌کند
   }
 };
 

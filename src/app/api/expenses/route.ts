@@ -4,7 +4,7 @@ import Expense from "../../../../models/expense";
 import ExpenseModel from "../../../../models/expense";
 
 export async function POST(req: Request) {
-  await connectDB(); // اتصال به دیتابیس
+  await connectDB(); // اتصال به پایگاه داده فقط یکبار برقرار می‌شود
 
   try {
     const { title, amount, date, expenseType } = await req.json();
@@ -28,17 +28,23 @@ export async function POST(req: Request) {
     return new Response(JSON.stringify(newExpense), { status: 201 });
   } catch (error) {
     console.error("Error ", error);
-
     return new Response(JSON.stringify({ error: "خطا در ذخیره اطلاعات!" }), {
       status: 500,
     });
   }
 }
 
+let cachedExpenses : any = null;
+
 export async function GET() {
+  if (cachedExpenses) {
+    return NextResponse.json(cachedExpenses, { status: 200 });
+  }
+
   try {
     await connectDB();
-    const expenses = await Expense.find().sort({ date: -1 }); // مرتب‌سازی بر اساس تاریخ
+    const expenses = await Expense.find().sort({ date: -1 });
+    cachedExpenses = expenses; // ذخیره داده‌ها برای استفاده بعدی
     return NextResponse.json(expenses, { status: 200 });
   } catch (error) {
     console.error("❌ خطا در دریافت اطلاعات:", error);

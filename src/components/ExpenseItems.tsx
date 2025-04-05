@@ -20,9 +20,12 @@ const ExpenseItems = () => {
   const [expenses, setExpenses] = useState<IExpense[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [refresh, setRefresh] = useState(false);
+
+  const [selectedExpense, setSelectedExpense] = useState<IExpense | null>(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   useEffect(() => {
+    console.log('Fetching expenses...');
     const fetchExpenses = async () => {
       try {
         const response = await fetch("/api/expenses");
@@ -39,7 +42,7 @@ const ExpenseItems = () => {
       }
     };
     fetchExpenses();
-  }, [refresh]);
+  }, []);
 
   const handleRemoveExpense = async (id: string) => {
     console.log("Deleting expense with ID:", id);
@@ -52,7 +55,7 @@ const ExpenseItems = () => {
       });
 
       if (!response.ok) throw new Error("خطا در حذف هزینه!");
-      setRefresh((prev) => !prev);
+
       setExpenses((prevExpenses) =>
         prevExpenses.filter((exp) => exp._id !== id)
       );
@@ -66,11 +69,36 @@ const ExpenseItems = () => {
     }
   };
 
+  const handleEditExpense = (expense: IExpense) => {
+    setSelectedExpense(expense);
+    setIsEditModalOpen(true);
+  };
+
+  const handleSaveEditedExpense = async () => {
+    if (!selectedExpense) return;
+    try {
+      const response = await fetch(`/api/expenses/${selectedExpense._id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(selectedExpense),
+      });
+      if (!response.ok) throw new Error("❌ خطا در ذخیره تغییرات!");
+
+      setIsEditModalOpen(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <div className="flex w-full flex-col ">
-      <div className="flex w-full border-b-2 items-center justify-center p-2">
+    <div className="flex w-full flex-col h-[320px] lg:h-auto ">
+      <div className="flex w-full items-center justify-center lg:justify-between border-b-2  p-2 ">
         <p className="font-semibold text-gray-800 ">لیست مخارج </p>
-        <div className="flex flex-col gap-2"></div>
+        <div className="hidden lg:flex flex-col ">
+          <button className="p-2 rounded-md bg-purple-500 text-white ">
+            اضافه کردن 
+          </button>
+        </div>
       </div>
       {loading ? (
         <div className="flex items-center justify-center  w-full p-10 lg:p-20">
@@ -78,7 +106,7 @@ const ExpenseItems = () => {
         </div>
       ) : (
         <>
-          <ul className="flex flex-col gap-2 p-2">
+          <ul className="flex flex-col gap-2 p-2 overflow-auto  ">
             {expenses.map((item, index) => (
               <li
                 className="flex w-full bg-white rounded-md border-2 border-gray-400 px-2 py-2"
@@ -150,6 +178,57 @@ const ExpenseItems = () => {
             </h2>
           </motion.div>
         </AnimatePresence>
+      )}
+
+      {isEditModalOpen && selectedExpense && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-800 opacity-95 z-50">
+          <div className="flex flex-col w-full max-w-xs mx-auto bg-white rounded shadow-2xl p-4 gap-2 z-[999]">
+            <h2 className="text-lg font-semibold">ویرایش هزینه</h2>
+            <input
+              type="text"
+              value={selectedExpense.title}
+              onChange={(e) =>
+                setSelectedExpense({
+                  ...selectedExpense,
+                  title: e.target.value,
+                })
+              }
+              className="border p-2 rounded w-full mt-2"
+            />
+            <div className="flex flex-col gap-2 items-center justify-center ">
+              <input
+                type="text"
+                value={selectedExpense.amount}
+                onChange={(e) =>
+                  setSelectedExpense({
+                    ...selectedExpense,
+                    amount: +e.target.value,
+                  })
+                }
+                className="border p-2 w-full rounded "
+              />
+              <p>
+                {selectedExpense.amount
+                  ? Number(selectedExpense.amount).toLocaleString() + " تومان"
+                  : "۰ تومان"}
+              </p>
+            </div>
+            <div className="flex gap-1 mt-2">
+              <button
+                type="submit"
+                className="py-2 px-4 bg-blue-500 text-white rounded-md cursor-pointer"
+              >
+                ثبت
+              </button>
+              <button
+                onClick={handleSaveEditedExpense}
+                className="py-2 px-4 bg-red-500 text-white rounded-md cursor-pointer "
+              >
+                بستن
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

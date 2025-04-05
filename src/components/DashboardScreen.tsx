@@ -6,7 +6,7 @@ import { IExpense } from "@/store/expenseSlice";
 
 const DashboardScreen = () => {
   const [expenses, setExpenses] = useState<IExpense[]>([]);
-  const [refresh, setRefresh] = useState(false);
+
   useEffect(() => {
     const fetchExpenses = async () => {
       const response = await fetch("/api/expenses");
@@ -15,10 +15,9 @@ const DashboardScreen = () => {
       }
       const result = await response.json();
       setExpenses(result);
-      setRefresh((prev) => !prev);
     };
     fetchExpenses();
-  }, [refresh]);
+  }, []);
 
   const income = expenses
     .filter((exp) => exp.expenseType === "ورودی")
@@ -28,7 +27,7 @@ const DashboardScreen = () => {
     .reduce((acc, exp) => acc + exp.amount, 0);
 
   return (
-    <div className="flex flex-col items-center text-sm lg:text-md  w-full lg:flex lg:w-5/6 bg-white rounded ">
+    <div className="flex flex-col items-center text-sm lg:text-md  w-full lg:flex lg:w-5/6 bg-white rounded  ">
       <div className="flex w-full bg-gradient-to-l bg-sky-900 p-4 rounded text-white  ">
         <div className="flex flex-col w-full justify-between gap-6">
           <div className="flex items-center justify-between">
