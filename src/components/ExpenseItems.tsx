@@ -91,7 +91,7 @@ const ExpenseItems = () => {
   };
 
   return (
-    <div className="flex w-full flex-col h-[320px] lg:h-auto ">
+    <div className="flex w-full flex-col h-[450px] lg:h-auto ">
       <div className="flex w-full items-center justify-center lg:justify-between border-b-2  p-2 ">
         <p className="font-semibold text-gray-800 ">لیست مخارج </p>
         <div className="hidden lg:flex flex-col ">
@@ -107,7 +107,7 @@ const ExpenseItems = () => {
       ) : (
         <>
           <ul className="flex flex-col gap-2 p-2 overflow-auto  ">
-            {expenses.map((item, index) => (
+            {expenses.reverse().map((item, index) => (
               <li
                 className="flex w-full bg-white rounded-md border-2 border-gray-400 px-2 py-2"
                 key={item._id}
