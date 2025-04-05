@@ -34,17 +34,10 @@ export async function POST(req: Request) {
   }
 }
 
-let cachedExpenses : any = null;
-
 export async function GET() {
-  if (cachedExpenses) {
-    return NextResponse.json(cachedExpenses, { status: 200 });
-  }
-
   try {
     await connectDB();
     const expenses = await Expense.find().sort({ date: -1 });
-    cachedExpenses = expenses; // ذخیره داده‌ها برای استفاده بعدی
     return NextResponse.json(expenses, { status: 200 });
   } catch (error) {
     console.error("❌ خطا در دریافت اطلاعات:", error);
